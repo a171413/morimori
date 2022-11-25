@@ -1,6 +1,7 @@
 package model.user;
 
 import lib.mysql.Client;
+import java.util.TimeZone;
 
 import java.sql.*;
 
@@ -9,7 +10,7 @@ public class Repository extends Client {
         Connection connection = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-
+        
         try {
             //SQL文の用意
             String sql = "insert into users "+
@@ -37,5 +38,45 @@ public class Repository extends Client {
         } finally {
             close(connection, stmt, rs);
         }
+    }
+
+    public static User selectUserByEmail(String email) {
+        Connection connection = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            //SQL文の用意
+            String sql = "select * from users where email = ?";
+
+            connection = createConnection();
+
+            stmt = connection.prepareStatement(sql);
+
+            stmt.setString(1, email);
+
+            rs = stmt.executeQuery();
+
+            //スコープの問題があるので一旦外で定義
+            User currentUser = null;
+            if (rs.next()) {
+                TimeZone.setDefault(TimeZone.getTimeZone("Asia/Tokyo"));
+                currentUser = new User(
+                        rs.getInt("id"),    // Userのid属性
+                        rs.getString("name"),   // Userのname属性
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getTimestamp("created_at"),
+                        rs.getTimestamp("updated_at")
+                );
+            }
+            return currentUser;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            close(connection, stmt, rs);
+        } 
     }
 }

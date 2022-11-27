@@ -10,7 +10,7 @@
             <li><p>メールアドレス</p><input type="email" name="email" placeholder="メールアドレス" required /></li>
             <li><p>パスワード</p><input type="password" name="password" minlength="6" placeholder="パスワード" required /></li>
         </ul>
-        <button type="submit" name="button">登録</button>
+        <button type="submit" name="button">送信</button>
     </form>
 </body>
 </html>

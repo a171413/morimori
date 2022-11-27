@@ -6,5 +6,6 @@
 <body>
     <p>ようこそ〇〇〇〇へ</p>
     <p>ユーザー登録は<a href="/user/signup">こちら</a></p>
+    <p>ログインは<a href="/user/login">こちら</a></p>
 </body>
 </html>

@@ -3,6 +3,7 @@ package model.tweet;
 import model.Default;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 public class Tweet extends Default {
 
@@ -35,4 +36,8 @@ public class Tweet extends Default {
         Repository.insertTweet(this);
     }
 
+    // Tweet一覧を取得する
+    public static ArrayList<Tweet> indexTweets() {
+        return Repository.indexTweets();
+    }
 }

@@ -43,7 +43,7 @@ public class Login extends HttpServlet {
                 //セッションスコープにインスタンスを保存
                 //"currnetUser"という名前でcurrentUserインスタンスを保存
                 HttpSession session = request.getSession();
-                session.setAttribute("user", currentUser);
+                session.setAttribute("currentUser", currentUser);
                 System.out.println("ログイン成功");
             } else {
                 System.out.println("ログイン失敗");
@@ -53,6 +53,6 @@ public class Login extends HttpServlet {
         }
 
         //登録が完了したらログイン画面にリダイレクト
-        response.sendRedirect("/");
+        response.sendRedirect("/user/mypage");
     }
 }

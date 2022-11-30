@@ -13,6 +13,11 @@ public class Default {
         this.updatedAt = updatedAt;
     }
 
+    public Default(Integer id, Timestamp createdAt){
+        this.id = id;
+        this.createdAt = createdAt;
+    }
+
     public Integer getId() {
         return id;
     }

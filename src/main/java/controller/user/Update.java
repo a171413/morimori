@@ -31,29 +31,22 @@ public class Update extends HttpServlet {
         User currentUser = (User)request.getSession().getAttribute("currentUser");
         
         if(currentUser.getPassWord().equals(old_password)){
+            User user = new User(
+                    currentUser.getId(),
+                    name,
+                    email,
+                    null,
+                    null,
+                    null
+                );
             if(new_password!=null) {
                 // 新パスワードを入力したとき
-                User user = new User(
-                    currentUser.getId(),
-                    name,
-                    email,
-                    new_password,
-                    null,
-                    null
-                );
-                user.updateUser();
+                user.setPassWord(new_password);
             } else {
                 // 新パスワードを入力しなかったとき
-                User user = new User(
-                    currentUser.getId(),
-                    name,
-                    email,
-                    old_password,
-                    null,
-                    null
-                );
-                user.updateUser();
+                user.setPassWord(old_password);
             }
+            user.updateUser();
         } else {
             System.out.print("パスワード不一致");
         }

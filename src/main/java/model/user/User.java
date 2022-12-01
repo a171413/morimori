@@ -42,6 +42,11 @@ public class User extends Default {
         Repository.insertUser(this);
     }
 
+    // controller/User/Update.javaからの呼び出し
+    public void updateUser(){
+        Repository.updateUser(this);
+    }
+
     //controller/User/Login.javaからの呼び出し
     public User selectUserByEmail(String email){
         User currentUser = Repository.selectUserByEmail(email);
